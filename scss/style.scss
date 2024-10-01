@@ -1,0 +1,12 @@
+
+@import "_varibles.scss";
+@import "_fonts.scss";
+@import "_mix.scss";
+@import "_header.scss"; // в этом файле должны быть стили для страницы index (Блок header)
+@import "_main.scss"; // в этом файле должны быть стили для страницы index (Блок main)
+@import "_footer.scss"; // в этом файле должны быть стили для страницы index (Блок footer)
+
+body{
+    margin: 0;
+    background-color: #f3f3f3;
+}

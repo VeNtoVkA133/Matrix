@@ -1,0 +1,32 @@
+*{
+    margin: 0 auto;
+    padding: 0;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    &-login{
+        display: flex;
+        flex-direction: column;
+        &-num{
+            margin-bottom: 20px;
+        }
+        &-btn{
+            @include btnnone();
+            padding: 2px;
+            border: 1px solid #000000 ;
+
+        }
+    }
+
+
+    /*
+    &-wrapinp{
+        display: flex;
+    }
+    &-inp{
+        margin: 10px;
+        width: 30px;
+    }
+    */
+}

@@ -65,11 +65,7 @@ function MatrixMassiv() {
             matrixMass[i][j] = id;
         }
     }
-    if (matrixWidth == 2 || matrixWidth == 3) {
-        easyCalculate(matrixWidth);
-    } else {
-        normalCalculate(matrixWidth, matrixMass)
-    }
+    normalCalculate(matrixMass)
 }
 
 function easyCalculate(matrixWidth) {
@@ -95,21 +91,20 @@ function easyCalculate(matrixWidth) {
     }
 }
 
-function normalCalculate(matrixWidth, matrixMass) {
-    let n = matrixWidth;
+function normalCalculate(matrixMass) {
     let a = matrixMass;
-    let c = new int[n - 1, n - 1];
-    for (let k = 0; k < n; k++) { //!сделать вместо n => a.length при переносе в отдельную функцию. Так как при 4на4 пожно использовать n, но так как тот же код будет использоваться дальше, то масив будет уже 3на3 а число в n 4. по этому нужно использовать a.length
-        for (let i = 1; i < n; i++) {
-            for (let j = 0; j < n; j++) {
-                if (j == k) {
-
-                } else if (j < k) {
-                    c[i - 1, j] = a[i, j];
-                } else if (j > k) {
-                    c[i - 1, j - 1] = a[i, j];
-                }
+    let c = new let[a.length - 1, a.length - 1]; //!сделать вместо n => a.length при переносе в отдельную функцию. Так как при 4на4 пожно использовать n, но так как тот же код будет использоваться дальше, то масив будет уже 3на3 а число в n 4. по этому нужно использовать a.length
+    for (let i = 1; i < a.length; i++) {
+        for (let j = 0; j < a.length; j++) {
+            if (j == k) {
+            } else if (j < k) {
+                c[i - 1, j] = a[i, j];
+            } else if (j > k) {
+                c[i - 1, j - 1] = a[i, j];
             }
         }
+    }
+    if(matrixMass >2){
+        normalCalculate(c)
     }
 }

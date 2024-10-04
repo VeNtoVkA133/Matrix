@@ -65,7 +65,7 @@ function MatrixMassiv() {
             matrixMass[i][j] = id;
         }
     }
-    normalCalculate(matrixMass)
+    res(matrixMass);
 }
 
 function easyCalculate(matrixWidth) {
@@ -92,28 +92,41 @@ function easyCalculate(matrixWidth) {
 }
 
 function normalCalculate(matrixMass) {
-    //!сделать вместо n => a.length при переносе в отдельную функцию. Так как при 4на4 пожно использовать n, но так как тот же код будет использоваться дальше, то масив будет уже 3на3 а число в n 4. по этому нужно использовать a.length
-    for (let k = 0; k < matrixMass; k++) {
-        let op;
-        //! нужно продумать логику по калькуляции матрицы. на данный момент находит M и a11,a12,a13,a14 нужно продумать логику как сделать так чтобы все данные записались в линию a11*M-a12*M+a13*M-a14*M
-        let a = matrixMass;
-        let c = new let[a.length - 1, a.length - 1];
-        for (let i = 1; i < a.length; i++) {
-            for (let j = 0; j < a.length; j++) {
-                if (j == k) {
-                    op = j;
-                } else if (j < k) {
-                    c[i - 1, j] = a[i, j];
-                } else if (j > k) {
-                    c[i - 1, j - 1] = a[i, j];
+    let operator;
+    for (let k = 0; k < matrixMass.length; k++) {
+        if (matrixMass.length > 1){
+            let op, wrap1;
+            let wrap2 = 0;
+                                        //!? нужно продумать логику по калькуляции матрицы. на данный момент находит M и a11,a12,a13,a14 нужно продумать логику как сделать так чтобы все данные записались в линию a11*M-a12*M+a13*M-a14*M
+            // матрица 4х4 ==| [i=1] 5127 \[i=2] 3002 \[i=3] 1345 \[i=4] 2003 |== 10
+            let a = matrixMass;
+            let c = [
+                [],
+                [],
+                []
+            ];
+            for (let i = 1; i < a.length; i++) {
+                for (let j = 0; j < a.length; j++) {
+                    if (j == k) {
+                        op = a[j][i-1];
+                    } else if (j < k) {
+                        c[j][i-1] = a[j][i];
+                    } else if (j > k) {
+                        c[j-1][i-1] = a[j][i];
+                    }
                 }
+                let x = normalCalculate(c);
+                wrap1 = op * x;
+                wrap2 = wrap2+wrap1;
             }
-        }
-        if (matrixMass > 1) {
-            normalCalculate(c);
+            operator = wrap1 + wrap2;
+        }else{
+            operator = matrixMass;
         }
     }
+    return operator;
 }
-function Calculate() {
-
+function res(matrixMass){
+    result = normalCalculate(matrixMass);
+    alert(result);
 }

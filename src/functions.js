@@ -92,19 +92,28 @@ function easyCalculate(matrixWidth) {
 }
 
 function normalCalculate(matrixMass) {
-    let a = matrixMass;
-    let c = new let[a.length - 1, a.length - 1]; //!сделать вместо n => a.length при переносе в отдельную функцию. Так как при 4на4 пожно использовать n, но так как тот же код будет использоваться дальше, то масив будет уже 3на3 а число в n 4. по этому нужно использовать a.length
-    for (let i = 1; i < a.length; i++) {
-        for (let j = 0; j < a.length; j++) {
-            if (j == k) {
-            } else if (j < k) {
-                c[i - 1, j] = a[i, j];
-            } else if (j > k) {
-                c[i - 1, j - 1] = a[i, j];
+    //!сделать вместо n => a.length при переносе в отдельную функцию. Так как при 4на4 пожно использовать n, но так как тот же код будет использоваться дальше, то масив будет уже 3на3 а число в n 4. по этому нужно использовать a.length
+    for (let k = 0; k < matrixMass; k++) {
+        let op;
+        //! нужно продумать логику по калькуляции матрицы. на данный момент находит M и a11,a12,a13,a14 нужно продумать логику как сделать так чтобы все данные записались в линию a11*M-a12*M+a13*M-a14*M
+        let a = matrixMass;
+        let c = new let[a.length - 1, a.length - 1];
+        for (let i = 1; i < a.length; i++) {
+            for (let j = 0; j < a.length; j++) {
+                if (j == k) {
+                    op = j;
+                } else if (j < k) {
+                    c[i - 1, j] = a[i, j];
+                } else if (j > k) {
+                    c[i - 1, j - 1] = a[i, j];
+                }
             }
         }
+        if (matrixMass > 1) {
+            normalCalculate(c);
+        }
     }
-    if(matrixMass >2){
-        normalCalculate(c)
-    }
+}
+function Calculate() {
+
 }

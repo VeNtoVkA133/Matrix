@@ -14,7 +14,7 @@ const router = createRouter({
     {
       path: '/three-dimensional',
       name: "Расчёт 3-х мерной матрицы",
-      component:ThreeDimension
+      component: ThreeDimension
     },
     {
       path: '/four-dimensional',

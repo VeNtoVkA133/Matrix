@@ -56,7 +56,7 @@ const onChangeMatrix = () => {
  * @param { Array[][] } matrix матрица для расчёта
  * @return { Number } значение определителя
  */
-const resultDeterminationMatrix = (matrix) => {
+export const resultDeterminationMatrix = (matrix) => {
   // Цикл один, потому что двигаемся по столбцам
   let mainDiagonal;
   let secondaryDiagonal;

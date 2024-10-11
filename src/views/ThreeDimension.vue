@@ -37,7 +37,7 @@
 
 import { ref } from 'vue'; // Переменные состояния
 import TitleMatrix from '../components/TitleMatrix.vue'
-import { resultDeterminationMatrix } from '../components/HomeView.vue'
+import resultDeterminationMatrix from '../views/HomeView.vue'
 import Footer from "../components/Footer.vue" // Компонент, используемый в вёрстке
 name: "ThreeDimension";
 
@@ -52,7 +52,6 @@ const op7 = ref(0);
 const op8 = ref(0);
 const op9 = ref(0);
 const determination = ref(0);
-
 /**
  * Функция определения нового массива (функция - реакция на состояние)
  * Присваивание результата определеителя матрицы 2 на 2 переменной состояния
@@ -65,12 +64,10 @@ const onChangeMatrix = () => {
     [op7.value, op8.value, op9.value]
    ];
   // console.log(matrixArray);
-  determination.value = resultDeterminationMatrix(matrixArray);
+  determination.value = resultDeterminationMatrix3x3(matrixArray);
 }
 
-
-
-const resultDeterminationMatrix = (matrixMass) => {
+const resultDeterminationMatrix3x3 = (matrixMass) => {
     let operator = [];
     let c = [
         [],
@@ -78,17 +75,19 @@ const resultDeterminationMatrix = (matrixMass) => {
     ];
     let op;
     let a = matrixMass;
-    for (let i = 1; i < a.length; i++) {
-        for (let j = 0; j < a.length; j++) {
-            if (j == k) {
-                op = a[j][i-1];
-            } else if (j < k) {
-                c[j][i-1] = a[j][i];
-            } else if (j > k) {
-                c[j-1][i-1] = a[j][i];
-            }
-            operator.push(op * resultMinor2to2(c));
-        }
+    for (let k = 0; k < a.length; k++) {
+      for (let i = 1; i < a.length; i++) {
+          for (let j = 0; j < a.length; j++) {
+              if (j == k) {
+                  op = a[j][i-1];
+              } else if (j < k) {
+                  c[j][i-1] = a[j][i];
+              } else if (j > k) {
+                  c[j-1][i-1] = a[j][i];
+              }
+              operator.push(op * resultDeterminationMatrix(c));
+          }
+      }
     }
     let opp = operator[0]-operator[1]+operator[2];
     return opp;

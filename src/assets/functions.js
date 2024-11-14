@@ -23,7 +23,7 @@ export const resultDeterminationMatrix3x3 = (matrixMass) => {
               }
           }
       }
-      let lineop = op * resultDeterminationMatrix2x2(c);
+      let lineop = op * resultDeterminationMatrix2x2(c); // тут вызвать функцию три на три, но в входных данных в эту функцию нужно добавить переменную в которой будет указываться функция Использующаяся тут
       line.push(lineop);
     }
     return line[0]-line[1]+line[2];

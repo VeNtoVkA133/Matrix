@@ -39,6 +39,7 @@ import { ref } from 'vue'; // Переменные состояния
 import TitleMatrix from '../components/TitleMatrix.vue'
 import resultDeterminationMatrix from '../views/HomeView.vue'
 import Footer from "../components/Footer.vue" // Компонент, используемый в вёрстке
+import { resultDeterminationMatrix3x3 } from "../assets/functions.js"
 name: "ThreeDimension";
 
 // Перменные взаимосвязанные с input, при помощи v-model
@@ -63,35 +64,12 @@ const onChangeMatrix = () => {
     [op4.value, op5.value, op6.value],
     [op7.value, op8.value, op9.value]
    ];
-  // console.log(matrixArray);
-  determination.value = resultDeterminationMatrix3x3(matrixArray);
+   //console.log(matrixArray);
+   determination.value = resultDeterminationMatrix3x3(matrixArray);
 }
 
-const resultDeterminationMatrix3x3 = (matrixMass) => {
-    let operator = [];
-    let c = [
-        [],
-        []
-    ];
-    let op;
-    let a = matrixMass;
-    for (let k = 0; k < a.length; k++) {
-      for (let i = 1; i < a.length; i++) {
-          for (let j = 0; j < a.length; j++) {
-              if (j == k) {
-                  op = a[j][i-1];
-              } else if (j < k) {
-                  c[j][i-1] = a[j][i];
-              } else if (j > k) {
-                  c[j-1][i-1] = a[j][i];
-              }
-              operator.push(op * resultDeterminationMatrix(c));
-          }
-      }
-    }
-    let opp = operator[0]-operator[1]+operator[2];
-    return opp;
-}
+
+
 
 </script>
 

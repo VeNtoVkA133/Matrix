@@ -15,7 +15,7 @@
         <input class="determinant-matrix-column-inp" v-model="op4" type="number" @input="onChangeMatrix"
           placeholder="k" />
       </div>
-      <div class="determinant-matrix-bracket" />
+      <div class="determinant-matrix-bracket" />  
     </figure>
     <div class="determinant-result">
       = {{ determination }}
@@ -56,7 +56,7 @@ const onChangeMatrix = () => {
  * @param { Array[][] } matrix матрица для расчёта
  * @return { Number } значение определителя
  */
-export const resultDeterminationMatrix = (matrix) => {
+const resultDeterminationMatrix = (matrix) => {
   // Цикл один, потому что двигаемся по столбцам
   let mainDiagonal;
   let secondaryDiagonal;
@@ -71,7 +71,7 @@ export const resultDeterminationMatrix = (matrix) => {
     }
   }
 
-  // console.log(mainDiagonal, secondaryDiagonal)
+   console.log(mainDiagonal, secondaryDiagonal)
 
   return mainDiagonal + secondaryDiagonal;
 }
